@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app1-backend-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: app1-manual
+  hostPath:
+    path: /mnt/app1-backend-data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app1-backend-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: app1-manual
+  resources:
+    requests:
+      storage: 1Gi
